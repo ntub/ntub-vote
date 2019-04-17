@@ -22,14 +22,14 @@ footer {
     text-decoration: none;
     cursor: pointer;
   }
-}
 
-footer.fixed-footer {
-  position: fixed;
-  bottom: 0;
-  justify-content: flex-end;
-  width: 100%;
-  height: 56px;
+  &.fixed-footer {
+    position: fixed;
+    bottom: 0;
+    justify-content: flex-end;
+    width: 100%;
+    height: 56px;
+  }
 }
 
 @media only screen and (max-width: 600px) {
