@@ -1,65 +1,71 @@
-/* President list */
-
 .president-list {
   display: flex;
   flex-direction: column;
   width: 100%;
+
+  li {
+    display: inline-flex;
+    justify-content: center;
+    padding: 2.5rem 0;
+    width: 100%;
+
+    .avatar {
+      img {
+        width: 100%;
+      }
+    }
+
+    .content {
+      display: inline-flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 2rem;
+      width: 50%;
+
+      h5 {
+        margin-bottom: 0.4rem;
+        font-weight: bold;
+        font-size: 1.5rem;
+      }
+
+      h6 {
+        margin-bottom: 1rem;
+      }
+    }
+
+    &:nth-child(2n) {
+      background-color: #707070;
+      color: #FFFFFF;
+
+      .avatar {
+        order: 1;
+      }
+    }
+  }
 }
 
-.president-list li {
-  display: inline-flex;
-  justify-content: center;
-  padding: 2.5rem 0;
-  width: 100%;
-}
-
-.president-list li:nth-child(2n) {
-  background-color: #707070;
-  color: #FFFFFF;
-}
-
-.president-list li:nth-child(2n) .avatar {
-  order: 1;
-}
-
-.president-list li .avatar img {
-  width: 100%;
-}
-
-.president-list li .content {
-  display: inline-flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 0 2rem;
-  width: 50%;
-}
-
-.president-list li .content h5 {
-  margin-bottom: 0.4rem;
-  font-weight: bold;
-  font-size: 1.5rem;
-}
-
-.president-list li .content h6 {
-  margin-bottom: 1rem;
-}
 
 @media only screen and (max-width: 600px) {
-  .president-list li {
-    display: inline-flex;
-    flex-wrap: wrap;
-  }
-  .president-list li:nth-child(2n) .avatar {
-    order: -1;
-  }
-  .president-list li .avatar {
-    padding: 0 2rem;
-    width: 90%;
-  }
-  .president-list li .content {
-    margin: 1rem 0;
-    width: 90%;
+  .president-list {
+    li {
+      display: inline-flex;
+      flex-wrap: wrap;
+
+      .avatar {
+        padding: 0 2rem;
+        width: 90%;
+      }
+
+      .content {
+        margin: 1rem 0;
+        width: 90%;
+      }
+
+      &:nth-child(2n) {
+        .avatar {
+          order: -1;
+        }
+      }
+    }
   }
 }
-
-/* President list end */
