@@ -5,6 +5,23 @@ footer {
   height: 56px;
   background-color: #3B4043;
   color: #FFFFFF;
+
+  span {
+    margin-left: 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  a.action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 6rem;
+    height: 56px;
+    background-color: #959EA7;
+    color: #FFFFFF;
+    text-decoration: none;
+    cursor: pointer;
+  }
 }
 
 footer.fixed-footer {
@@ -15,23 +32,10 @@ footer.fixed-footer {
   height: 56px;
 }
 
-footer span {
-  margin-left: 1.5rem;
-  font-size: 0.9rem;
-}
-
-footer a.top {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 6rem;
-  height: 56px;
-  background-color: #959EA7;
-  cursor: pointer;
-}
-
 @media only screen and (max-width: 600px) {
-  footer span {
-    font-size: 0.8rem;
+  footer {
+    span {
+      font-size: 0.8rem;
+    }
   }
 }
