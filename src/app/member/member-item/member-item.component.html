@@ -1,0 +1,17 @@
+<div class="avatar">
+  <img src="assets/images/avatar-1.png" alt="" srcset="">
+</div>
+<div class="content">
+  <h5>柯O哲</h5>
+  <h6>垃圾不分系</h6>
+  <div class="vote-select" [ngSwitch]="isMany">
+    <ng-container *ngSwitchCase="false">
+      <div class="btn select">同意</div>
+      <div class="btn">不同意</div>
+    </ng-container>
+    <ng-container *ngSwitchCase="true">
+        <div class="btn select" *ngIf="isSelected">已選擇</div>
+        <div class="btn" *ngIf="!isSelected">未選擇</div>
+    </ng-container>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<nav>
+  <h2>國立臺北商業大學學生會投票系統</h2>
+  <ul class="menu" [ngSwitch]="navMod">
+    <ng-container *ngSwitchCase="navModType.VoteLeave">
+      <li class="outline-button" [routerLink]="['/']">離開投票</li>
+    </ng-container>
+    <ng-container *ngSwitchCase="navModType.VoteList">
+      <li>會長候選人</li>
+      <li>副會長候選人</li>
+      <li>各系學生代表</li>
+      <li class="outline-button">投票結果</li>
+    </ng-container>
+  </ul>
+</nav>

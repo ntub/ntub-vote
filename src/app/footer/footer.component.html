@@ -1,0 +1,22 @@
+<footer [ngClass]="{'fixed-footer': isFixedFooter}"
+        [ngSwitch]="footerMod">
+  <ng-container *ngSwitchCase="footerModType.Home">
+    <span>Copyright © 2018 國立臺北商業大學學生會投票系統. All rights reserved</span>
+    <a class="top"
+       (click)="scrollTop()">
+      <i class="material-icons">
+        arrow_upward
+      </i>
+    </a>
+  </ng-container>
+  <ng-container *ngSwitchCase="footerModType.Submit">
+    <a class="top"
+       (click)="submit()">
+      確認投票
+    </a>
+  </ng-container>
+  <ng-container *ngSwitchDefault>
+    <span>Copyright © 2018 國立臺北商業大學學生會投票系統. All rights reserved</span>
+    <span></span>
+  </ng-container>
+</footer>

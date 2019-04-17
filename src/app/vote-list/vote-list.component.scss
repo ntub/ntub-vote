@@ -1,0 +1,49 @@
+/* Vote list */
+
+.vote-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 2rem;
+  width: 100%;
+
+  li {
+    display: inline-flex;
+    flex: 1 1;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 1rem 1.5rem 1rem;
+    padding: 1.2rem 2rem;
+    min-width: 15rem;
+    outline: none;
+    border: 2px solid #CDD6DD;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: .3s ease-in-out;
+
+    &:hover {
+      background-color: #CDD6DD;
+    }
+
+    h5 {
+      margin-bottom: 1rem;
+      font-size: 1.8rem;
+    }
+
+    span {
+      display: inline-flex;
+      justify-content: center;
+
+      i {
+        margin-right: 0.3rem;
+      }
+    }
+  }
+
+  li.complete {
+    opacity: 0.8;
+    cursor: no-drop;
+  }
+}
+
+/* Vote list end */

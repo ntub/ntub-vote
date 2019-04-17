@@ -1,0 +1,48 @@
+/* Councilor list */
+
+.councilor-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0 1rem 1rem 1rem;
+  max-width: 1280px;
+  width: 100%;
+}
+
+.councilor-list li {
+  flex: 1 1;
+  padding: 0.75rem 1.5rem;
+  min-width: 280px;
+  max-width: 50%;
+}
+
+.councilor-list li .avatar {
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.councilor-list li .avatar img {
+  width: 100%;
+}
+
+.councilor-list li h5 {
+  display: block;
+  margin: 0.5rem 0;
+}
+
+.councilor-list li h6 {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #959EA7;
+}
+
+@media only screen and (max-width: 600px) {
+  .councilor-list li {
+    max-width: inherit;
+  }
+}
+
+/* Councilor list end */

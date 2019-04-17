@@ -1,0 +1,20 @@
+<header [ngSwitch]="headerMod">
+  <ng-container *ngSwitchCase="headerModType.Home">
+    <div class="header-banner">
+      <h2>今天的你，投票了嗎？</h2>
+      <span>2019年學生會長副會長投票，從早上八點到下午六點熱烈招募中</span>
+      <a class="button" [routerLink]="['/vote-list']">前往投票</a>
+    </div>
+  </ng-container>
+  <ng-container *ngSwitchCase="headerModType.Finished">
+    <div class="header-banner end">
+      <h2>恭喜您已經完成投票！</h2>
+      <a class="button" (click)="logout()">登出投票</a>
+    </div>
+  </ng-container>
+  <ng-container *ngSwitchDefault>
+    <div class="header-banner">
+        <h2>投票尚未開始！</h2>
+    </div>
+  </ng-container>
+</header>
