@@ -1,4 +1,4 @@
-::ng-deep .member-list li .avatar {
+.avatar {
   display: inline-flex;
   overflow: hidden;
   align-items: center;
@@ -7,38 +7,42 @@
   width: 200px;
   height: 200px;
   border-radius: 50%;
+
+  img {
+    min-height: 200px;
+  }
 }
 
-::ng-deep .member-list li .avatar img {
-  min-height: 200px;
-}
+.content {
+  h5 {
+    font-size: 2rem;
+  }
 
-::ng-deep .member-list li .content h5 {
-  font-size: 2rem;
-}
+  h6 {
+    display: block;
+    margin-bottom: 1.4rem;
+    color: #6F7579;
+    opacity: 0.8;
+  }
 
-::ng-deep .member-list li .content h6 {
-  display: block;
-  margin-bottom: 1.4rem;
-  color: #6F7579;
-  opacity: 0.8;
-}
+  .vote-select {
+    .btn {
+      padding: 0.5rem 0;
+      min-width: 8rem;
+      border: 2px solid #CDD6DD;
+      border-radius: 8px;
+      color: #6F7579;
+      font-size: 0.9rem;
+      cursor: pointer;
 
-::ng-deep .member-list li .content .vote-select .btn {
-  padding: 0.5rem 0;
-  min-width: 8rem;
-  border: 2px solid #CDD6DD;
-  border-radius: 8px;
-  color: #6F7579;
-  font-size: 0.9rem;
-  cursor: pointer;
-}
+      &.select {
+        background-color: #6F7579;
+        color: #FFFFFF;
+      }
 
-::ng-deep .member-list li .content .vote-select .btn.select {
-  background-color: #6F7579;
-  color: #FFFFFF;
-}
-
-::ng-deep .member-list li .content .vote-select .btn:nth-child(2) {
-  margin-left: 0.8rem;
+      &::nth-child(2) {
+        margin-left: 0.8rem;
+      }
+    }
+  }
 }
