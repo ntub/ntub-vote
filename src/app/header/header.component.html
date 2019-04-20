@@ -3,7 +3,8 @@
     <div class="header-banner">
       <h2>今天的你，投票了嗎？</h2>
       <span>2019年學生會長副會長投票，從早上八點到下午六點熱烈招募中</span>
-      <a class="button" [routerLink]="['/vote-list']">前往投票</a>
+      <!-- <a class="button" [routerLink]="['/vote-list']">前往投票</a> -->
+      <a class="button" (click)="login()">前往投票</a>
     </div>
   </ng-container>
   <ng-container *ngSwitchCase="headerModType.Finished">

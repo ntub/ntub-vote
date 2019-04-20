@@ -1,11 +1,22 @@
 <section id="councilor">
   <h4>議員候選人</h4>
   <ul class="councilor-list">
-    <li>
+    <li *ngFor="let councilor of councilors">
       <div class="avatar">
-        <img src="assets/images/avatar-1.png"
-             alt=""
-             srcset="">
+        <img [src]="councilor.image" alt="" srcset="">
+      </div>
+      <div class="content">
+        <h5>{{councilor.name}}</h5>
+        <h6>{{councilor.klass}}</h6>
+        <span>
+          {{councilor.politics}}
+        </span>
+      </div>
+
+    </li>
+    <!-- <li>
+      <div class="avatar">
+        <img src="assets/images/avatar-1.png" alt="" srcset="">
       </div>
       <div class="content">
         <h5>柯O哲</h5>
@@ -18,124 +29,7 @@
           推動本市公民團體建置綠能公民電廠、辦理民間設置補助獎勵<br>
         </span>
       </div>
-    </li>
-    <li>
-      <div class="avatar">
-        <img src="assets/images/avatar-2.png"
-             alt=""
-             srcset="">
-      </div>
-      <div class="content">
-        <h5>柯O哲</h5>
-        <h6>垃圾不分系</h6>
-        <span>
-          停止中電北送<br>
-          推動公車2.0計畫，增加大眾運輸人口，推動電動車<br>
-          在地農產就近供應學童營養午餐，減低運銷碳足跡 <br>
-        </span>
-      </div>
-    </li>
-    <li>
-      <div class="avatar">
-        <img src="assets/images/avatar-2.png"
-             alt=""
-             srcset="">
-      </div>
-      <div class="content">
-        <h5>柯O哲</h5>
-        <h6>垃圾不分系</h6>
-        <span>
-          停止中電北送<br>
-          推動公車2.0計畫，增加大眾運輸人口，推動電動車<br>
-          在地農產就近供應學童營養午餐，減低運銷碳足跡 <br>
-        </span>
-      </div>
-    </li>
-    <li>
-      <div class="avatar">
-        <img src="assets/images/avatar-2.png"
-             alt=""
-             srcset="">
-      </div>
-      <div class="content">
-        <h5>柯O哲</h5>
-        <h6>垃圾不分系</h6>
-        <span>
-          停止中電北送<br>
-          推動公車2.0計畫，增加大眾運輸人口，推動電動車<br>
-          在地農產就近供應學童營養午餐，減低運銷碳足跡 <br>
-        </span>
-      </div>
-    </li>
-    <li>
-      <div class="avatar">
-        <img src="assets/images/avatar-2.png"
-             alt=""
-             srcset="">
-      </div>
-      <div class="content">
-        <h5>柯O哲</h5>
-        <h6>垃圾不分系</h6>
-        <span>
-          停止中電北送<br>
-          推動公車2.0計畫，增加大眾運輸人口，推動電動車<br>
-          在地農產就近供應學童營養午餐，減低運銷碳足跡 <br>
-        </span>
-      </div>
-    </li>
-    <li>
-      <div class="avatar">
-        <img src="assets/images/avatar-1.png"
-             alt=""
-             srcset="">
-      </div>
-      <div class="content">
-        <h5>柯O哲</h5>
-        <h6>垃圾不分系</h6>
-        <span>
-          持續推動共享交通——從 YouBike 到共享汽機車<br>
-          建立以「低衝擊開發」（Low Impact Development，簡稱 LID）為基礎的雨水管理系統<br>
-          提升台北的能源自給率<br>
-          擬定「城市循環鏈」戰略方向<br>
-          推動本市公民團體建置綠能公民電廠、辦理民間設置補助獎勵<br>
-        </span>
-      </div>
-    </li>
-    <li>
-      <div class="avatar">
-        <img src="assets/images/avatar-1.png"
-             alt=""
-             srcset="">
-      </div>
-      <div class="content">
-        <h5>柯O哲</h5>
-        <h6>垃圾不分系</h6>
-        <span>
-          持續推動共享交通——從 YouBike 到共享汽機車<br>
-          建立以「低衝擊開發」（Low Impact Development，簡稱 LID）為基礎的雨水管理系統<br>
-          提升台北的能源自給率<br>
-          擬定「城市循環鏈」戰略方向<br>
-          推動本市公民團體建置綠能公民電廠、辦理民間設置補助獎勵<br>
-        </span>
-      </div>
-    </li>
-    <li>
-      <div class="avatar">
-        <img src="assets/images/avatar-1.png"
-             alt=""
-             srcset="">
-      </div>
-      <div class="content">
-        <h5>柯O哲</h5>
-        <h6>垃圾不分系</h6>
-        <span>
-          持續推動共享交通——從 YouBike 到共享汽機車<br>
-          建立以「低衝擊開發」（Low Impact Development，簡稱 LID）為基礎的雨水管理系統<br>
-          提升台北的能源自給率<br>
-          擬定「城市循環鏈」戰略方向<br>
-          推動本市公民團體建置綠能公民電廠、辦理民間設置補助獎勵<br>
-        </span>
-      </div>
-    </li>
+    </li> -->
+
   </ul>
 </section>

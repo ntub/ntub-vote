@@ -2,24 +2,97 @@ import { Injectable } from '@angular/core';
 
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
+import { HttpClient } from '@angular/common/http';
+import { from, ReplaySubject } from 'rxjs';
+import { map, mergeMap, shareReplay } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  provider = new auth.GoogleAuthProvider();
+  private accessTokenField = 'access';
+  // private refreshTokenField = 'refresh';
 
-  constructor(public afAuth: AngularFireAuth) {
+  provider = new auth.GoogleAuthProvider();
+  serverURL: string = environment.apiServer;
+  token: string;
+
+  // tslint:disable-next-line:variable-name
+  constructor(public afAuth: AngularFireAuth, private _http: HttpClient) {
     this.provider.addScope('email');
     this.provider.addScope('profile');
   }
 
   login() {
-    this.afAuth.auth.signInWithPopup(this.provider);
+    const authSource = from(this.afAuth.auth.signInWithPopup(this.provider));
+    const dataSource =  authSource.pipe(
+      // tslint:disable-next-line:no-string-literal
+      map(result => result.credential['accessToken']),
+      mergeMap(accessToken => {
+        return this._http.post('/api/auth/google', {
+          token: accessToken
+        });
+      },
+      shareReplay(1),
+      ),
+    );
+    const subject = new ReplaySubject<any>(1);
+    subject.subscribe(
+      result => {
+        // tslint:disable-next-line:no-string-literal
+        this.setAccessToken(result['token']);
+      },
+      err => {
+        this.handleAuthenticationError(err);
+      }
+    );
+    dataSource.subscribe(subject);
+    return subject;
   }
 
   logout() {
     this.afAuth.auth.signOut();
+    localStorage.clear();
+  }
+
+  refresh() {
+    const refreshSource = this._http.post(`${this.serverURL}/api/auth/refresh`, {
+      token: this.getAccessToken()
+    });
+    const subject = new ReplaySubject<any>(1);
+    subject.subscribe(
+      result => {
+        // tslint:disable-next-line:no-string-literal
+        this.setAccessToken(result['token']);
+      },
+      err => {
+        this.handleAuthenticationError(err);
+      }
+    );
+    refreshSource.subscribe(subject);
+    return subject;
+  }
+
+  get isAuthenticated(): boolean {
+    return !!this.getAccessToken();
+  }
+
+  private handleAuthenticationError(err: any) {
+    // Only for authentication error codes
+    this.setAccessToken(null);
+  }
+
+  private setAccessToken(accessToken: string) {
+    if (!accessToken) {
+      localStorage.removeItem(this.accessTokenField);
+    } else {
+      localStorage.setItem(this.accessTokenField, accessToken);
+    }
+  }
+
+  getAccessToken() {
+    return localStorage.getItem(this.accessTokenField);
   }
 }

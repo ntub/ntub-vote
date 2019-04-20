@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Candidate } from '../../model/candidate.model';
 
 @Component({
   selector: 'app-representative',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./representative.component.scss']
 })
 export class RepresentativeComponent implements OnInit {
-
+  @Input() representatives: Candidate[];
   constructor() { }
 
   ngOnInit() {

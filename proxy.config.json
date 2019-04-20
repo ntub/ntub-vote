@@ -1,0 +1,7 @@
+{
+    "/api": {
+        "target": "https://ntub-vote-server.arthurc.me",
+        "secure": true,
+        "changeOrigin": true
+    }
+}

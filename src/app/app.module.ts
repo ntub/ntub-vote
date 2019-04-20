@@ -20,6 +20,12 @@ import { MemberItemComponent } from './member/member-item/member-item.component'
 import { VoteCompleteComponent } from './vote-complete/vote-complete.component';
 import { VoteListComponent } from './vote-list/vote-list.component';
 
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { RequestHttpInterceptor } from './shared-services/response.interceptor';
+import { AuthService } from './shared-services/auth.service';
+import { JwtInterceptor } from '@auth0/angular-jwt';
+import { JWTInterceptorProvider, RefreshTokenInterceptorProvider, JWTModule } from './jwt.config';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,8 +46,16 @@ import { VoteListComponent } from './vote-list/vote-list.component';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
+    HttpClientModule,
+    JWTModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: RequestHttpInterceptor, multi: true },
+    AuthService,
+    JwtInterceptor,
+    JWTInterceptorProvider,
+    RefreshTokenInterceptorProvider,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

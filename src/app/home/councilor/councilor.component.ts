@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Candidate } from '../../model/candidate.model';
 
 @Component({
   selector: 'app-councilor',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./councilor.component.scss']
 })
 export class CouncilorComponent implements OnInit {
-
+  @Input() councilors: Candidate[];
   constructor() { }
 
   ngOnInit() {

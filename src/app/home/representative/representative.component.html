@@ -1,7 +1,19 @@
 <section id="representative">
   <h4>各系代表候選人</h4>
   <ul class="representative-list">
-    <li>
+    <li *ngFor="let representative of representatives">
+      <div class="avatar">
+        <img [src]="representative.image" alt="" srcset="">
+      </div>
+      <div class="content">
+        <h5>{{representative.name}}</h5>
+        <h6>{{representative.kclass}}</h6>
+        <span>
+          {{representative.politics}}
+        </span>
+      </div>
+    </li>
+    <!-- <li>
       <div class="avatar">
         <img src="assets/images/avatar-1.png"
              alt=""
@@ -70,6 +82,6 @@
           持續推動共享交通——從 YouBike 到共享汽機車
         </span>
       </div>
-    </li>
+    </li> -->
   </ul>
 </section>

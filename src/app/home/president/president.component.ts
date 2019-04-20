@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { CandidateService } from 'src/app/shared-services/candidate.service';
+import { Candidate } from '../../model/candidate.model';
+import { Observable, from, of } from 'rxjs';
+import { tap, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-president',
@@ -6,8 +10,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./president.component.scss']
 })
 export class PresidentComponent implements OnInit {
-
-  constructor() { }
+  @Input() presidents: Candidate[];
+  constructor(private candidateService: CandidateService) { }
 
   ngOnInit() {
   }
