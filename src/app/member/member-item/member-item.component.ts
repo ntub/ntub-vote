@@ -1,4 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Candidate } from 'src/app/model/candidate.model';
+import { SendVote } from 'src/app/model/vote-pool.model';
 
 @Component({
   selector: 'app-member-item',
@@ -8,9 +10,10 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class MemberItemComponent implements OnInit {
 
   @Input() isMany = true;
-  @Input() selectId: number;
-  @Output() idChanged: EventEmitter<number> = new EventEmitter<number>();
-  id: number;
+  @Input() selectId?: number = null;
+  @Output() voteChanged: EventEmitter<SendVote> = new EventEmitter<SendVote>();
+  @Input() candidate: Candidate;
+  isAgree?: boolean = null;
 
   constructor() { }
 
@@ -18,7 +21,12 @@ export class MemberItemComponent implements OnInit {
   }
 
   get isSelected(): boolean {
-    return this.id === this.selectId;
+    return this.candidate.id === this.selectId;
+  }
+
+  selectCandidate(agree: boolean = true) {
+    this.isAgree = agree;
+    this.voteChanged.emit({id: this.candidate.id, isAgree: agree});
   }
 
 }

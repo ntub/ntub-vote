@@ -5,10 +5,10 @@
       <li class="outline-button" [routerLink]="['/']">離開投票</li>
     </ng-container>
     <ng-container *ngSwitchCase="navModType.VoteList">
-      <li>會長候選人</li>
-      <li>副會長候選人</li>
-      <li>各系學生代表</li>
-      <li class="outline-button">投票結果</li>
+      <li href="#president">會長候選人</li>
+      <li href="#councilor">議員候選人</li>
+      <li href="#representative">各系學生代表</li>
+      <!-- <li class="outline-button">投票結果</li> -->
     </ng-container>
   </ul>
 </nav>

@@ -4,7 +4,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
 import { HttpClient } from '@angular/common/http';
 import { from, ReplaySubject } from 'rxjs';
-import { map, mergeMap, shareReplay } from 'rxjs/operators';
+import { map, mergeMap } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -35,7 +35,6 @@ export class AuthService {
           token: accessToken
         });
       },
-      shareReplay(1),
       ),
     );
     const subject = new ReplaySubject<any>(1);
@@ -58,7 +57,7 @@ export class AuthService {
   }
 
   refresh() {
-    const refreshSource = this._http.post(`${this.serverURL}/api/auth/refresh`, {
+    const refreshSource = this._http.post(`/api/auth/refresh`, {
       token: this.getAccessToken()
     });
     const subject = new ReplaySubject<any>(1);
@@ -82,6 +81,7 @@ export class AuthService {
   private handleAuthenticationError(err: any) {
     // Only for authentication error codes
     this.setAccessToken(null);
+    console.log(err);
   }
 
   private setAccessToken(accessToken: string) {

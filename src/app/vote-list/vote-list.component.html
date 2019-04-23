@@ -2,34 +2,23 @@
 <article>
   <section class="vote-layout">
     <h4>投票列表</h4>
-    <ul class="vote-list">
-      <li [routerLink]="['/member']">
-        <h5>學生會長</h5>
-        <span>
-          <i class="material-icons">
-            how_to_vote
-          </i>
-          前往投票
-        </span>
-      </li>
-      <li class="complete"
-          [routerLink]="['/member']">
-        <h5>學生議長</h5>
-        <span>
+    <ul class="vote-list" *ngFor="let votePool of votePools">
+      <li (click)="toVoting(votePool)">
+        <h5>{{ votePool.name }}</h5>
+        <span *ngIf="votePool.voted; else noVote">
           <i class="material-icons">
             how_to_reg
           </i>
           投票完成
         </span>
-      </li>
-      <li [routerLink]="['/member']">
-        <h5>各系學生代表</h5>
-        <span>
-          <i class="material-icons">
-            how_to_vote
-          </i>
-          前往投票
-        </span>
+        <ng-template #noVote>
+          <span>
+            <i class="material-icons">
+              how_to_vote
+            </i>
+            前往投票
+          </span>
+        </ng-template>
       </li>
     </ul>
   </section>

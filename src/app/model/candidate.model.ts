@@ -5,5 +5,5 @@ export class Candidate {
     name: string;
     klass: string;
     politics: string;
-    pool: string;
+    pool?: string;
 }
