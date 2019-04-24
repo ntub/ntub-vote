@@ -1,7 +1,7 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { NavbarMod } from '../navbar/enums';
 import { AuthService } from '../shared-services/auth.service';
-import { of, Subject } from 'rxjs';
+import { of, Subject, ReplaySubject } from 'rxjs';
 import { filter, mergeMap, debounceTime, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { VotePoolService } from '../shared-services/vote-pool.service';
@@ -16,6 +16,7 @@ export class VoteListComponent implements OnInit {
   navMod = NavbarMod.VoteLeave;
   votePools: VotePool[] = [];
   subject = new Subject<VotePool>();
+  votePools$ = new ReplaySubject<VotePool[]>(1);
 
   constructor(
     private auth: AuthService,
@@ -34,7 +35,8 @@ export class VoteListComponent implements OnInit {
         return this.votePoolService.getVotePools();
       }),
     ).subscribe(result => {
-      this.votePools = result;
+      this.votePools$.next(result);
+      // this.votePools = result;
     });
     /// isAuthenticated === false
     authSource.pipe(
@@ -44,6 +46,13 @@ export class VoteListComponent implements OnInit {
       this.ngzone.run(() => {
         this.router.navigate(['/vote-list']);
       });
+    });
+
+    this.votePools$.pipe(
+      map(data => data.filter(it => it.voted).length === data.length),
+      filter(isFull => isFull)
+    ).subscribe(() => {
+      this.router.navigate(['/vote-complete']);
     });
 
     /// handle to voting page

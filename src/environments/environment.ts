@@ -12,9 +12,9 @@ export const environment = {
     storageBucket: 'ntub-vote.appspot.com',
     messagingSenderId: '180728485009'
   },
-  // apiServer: 'https://ntub-vote-server.arthurc.me'
+  apiServer: 'https://ntub-vote-server.arthurc.me'
   // apiServer: 'https://c923db7c.ngrok.io'
-  apiServer: ''
+  // apiServer: ''
 };
 
 /*

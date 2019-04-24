@@ -25,9 +25,9 @@ export class HeaderComponent implements OnInit {
 
   async ngOnInit() {
     const isVoteTime = await this.timeService.isVoteTime();
-    if (isVoteTime) {
+    if (isVoteTime && this.headerMod !== HeaderMod.Finished) {
       this.headerMod = HeaderMod.Home;
-    } else {
+    } else if (this.headerMod !== HeaderMod.Finished) {
       this.headerMod = HeaderMod.None;
     }
   }
@@ -53,6 +53,7 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.auth.logout();
+    this.router.navigate(['/home']);
   }
 
 }
