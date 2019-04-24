@@ -25,6 +25,7 @@ import { RequestHttpInterceptor } from './shared-services/response.interceptor';
 import { AuthService } from './shared-services/auth.service';
 import { JwtInterceptor } from '@auth0/angular-jwt';
 import { JWTInterceptorProvider, RefreshTokenInterceptorProvider, JWTModule } from './jwt.config';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { JWTInterceptorProvider, RefreshTokenInterceptorProvider, JWTModule } fr
   imports: [
     BrowserModule,
     AppRoutingModule,
+    NgxSpinnerModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     HttpClientModule,

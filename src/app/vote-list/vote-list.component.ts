@@ -35,15 +35,15 @@ export class VoteListComponent implements OnInit {
       }),
     ).subscribe(result => {
       this.votePools = result;
-    })
+    });
     /// isAuthenticated === false
     authSource.pipe(
       filter(v => !v),
       mergeMap(_ => this.auth.login()),
     ).subscribe(() => {
-      this.ngzone.run(()=>{
+      this.ngzone.run(() => {
         this.router.navigate(['/vote-list']);
-      })
+      });
     });
 
     /// handle to voting page
@@ -53,8 +53,8 @@ export class VoteListComponent implements OnInit {
     ).subscribe(id => {
       this.router.navigate(['/member', `${id}`]);
     }, err => {
-      this.router.navigate(['/'])
-    })
+      this.router.navigate(['/']);
+    });
   }
 
   toVoting(item: VotePool) {

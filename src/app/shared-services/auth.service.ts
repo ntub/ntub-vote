@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { from, ReplaySubject } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class AuthService {
   token: string;
 
   // tslint:disable-next-line:variable-name
-  constructor(public afAuth: AngularFireAuth, private _http: HttpClient) {
+  constructor(public afAuth: AngularFireAuth, private _http: HttpClient, private router: Router) {
     this.provider.addScope('email');
     this.provider.addScope('profile');
   }
@@ -31,7 +32,7 @@ export class AuthService {
       // tslint:disable-next-line:no-string-literal
       map(result => result.credential['accessToken']),
       mergeMap(accessToken => {
-        return this._http.post('/api/auth/google', {
+        return this._http.post(`${this.serverURL}/api/auth/google`, {
           token: accessToken
         });
       },
@@ -54,10 +55,11 @@ export class AuthService {
   logout() {
     this.afAuth.auth.signOut();
     localStorage.clear();
+    this.router.navigate(['/']);
   }
 
   refresh() {
-    const refreshSource = this._http.post(`/api/auth/refresh`, {
+    const refreshSource = this._http.post(`${this.serverURL}/api/auth/refresh`, {
       token: this.getAccessToken()
     });
     const subject = new ReplaySubject<any>(1);
@@ -80,7 +82,7 @@ export class AuthService {
 
   private handleAuthenticationError(err: any) {
     // Only for authentication error codes
-    this.setAccessToken(null);
+    // this.setAccessToken(null);
     console.log(err);
   }
 

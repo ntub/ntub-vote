@@ -7,6 +7,7 @@ import { VoteListComponent } from './vote-list/vote-list.component';
 import { VoteCompleteComponent } from './vote-complete/vote-complete.component';
 
 const routes: Routes = [
+  { path: 'home/:logout', component: HomeComponent },
   { path: 'home', component: HomeComponent },
   { path: 'member/:id', component: MemberComponent },
   { path: 'vote-list', component: VoteListComponent },
@@ -16,6 +17,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-exports: [RouterModule]
+  exports: [RouterModule]
 })
 export class AppRoutingModule { }

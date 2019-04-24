@@ -23,10 +23,10 @@ export class RefreshTokenInterceptor implements HttpInterceptor {
           return throwError(err);
         }));
     } else {
-      return this.authorizationService.refresh().pipe(mergeMap(() => {
-        return this.jwtInterceptor.intercept(req, next);
-      }));
-      // return next.handle(req);
+      // return this.authorizationService.refresh().pipe(mergeMap(() => {
+      //   return this.jwtInterceptor.intercept(req, next);
+      // }));
+      return next.handle(req);
     }
   }
 }

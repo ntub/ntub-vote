@@ -12,7 +12,7 @@ export class TimeService {
     }
 
     getTime(): Observable<Time> {
-        return this.http.get<Time>(`/api/time`);
+        return this.http.get<Time>(`${this.apiServer}/api/time`);
     }
 
     async isVoteTime(): Promise<boolean> {

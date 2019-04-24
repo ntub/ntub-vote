@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NavbarMod } from './enums';
+import { AuthService } from '../shared-services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,10 +12,13 @@ export class NavbarComponent implements OnInit {
   @Input() navMod: NavbarMod = NavbarMod.Default;
   navModType = NavbarMod;
 
-  constructor() { }
+  constructor(private auth: AuthService) { }
 
   ngOnInit() {
-    console.log(typeof this.navMod);
+  }
+
+  logout() {
+    this.auth.logout();
   }
 
 }

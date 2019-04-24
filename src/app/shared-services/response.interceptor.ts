@@ -14,14 +14,9 @@ export class RequestHttpInterceptor implements HttpInterceptor {
                     if (event instanceof HttpResponse) {
                         if (Array.isArray(event.body)) {
                             const camelBody = [];
-                            // for (const b of event.body) {
-                            //     const camelCaseObject = mapKeys(b, (_, k) => camelCase(k));
-                            //     camelBody.push(camelCaseObject);
-                            // }
                             event.body.map(b => mapKeys(b, (_, k) => camelCase(k)));
 
                             const modEvent = event.clone({ body: event.body });
-                            console.log(event);
                             return modEvent;
                         } else {
                             const camelCaseObject = mapKeys(event.body, (_, k) => camelCase(k));

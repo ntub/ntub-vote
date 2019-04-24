@@ -6,8 +6,8 @@
   <h6>{{ candidate.klass }}</h6>
   <div class="vote-select" [ngSwitch]="isMany">
     <ng-container *ngSwitchCase="false">
-      <div class="btn select" (click)="selectCandidate(true)">{{ isAgree === true ? '已選擇' : '同意'}}</div>
-      <div class="btn" (click)="selectCandidate(false)">{{ isAgree === false ? '已選擇' : '不同意'}}</div>
+      <div [ngClass]="isAgree === true ? 'btn select' : 'btn'" (click)="selectCandidate(true)">同意</div>
+      <div [ngClass]="isAgree === false ? 'btn select' : 'btn'" (click)="selectCandidate(false)">不同意</div>
     </ng-container>
     <ng-container *ngSwitchCase="true">
         <div class="btn select" *ngIf="isSelected">已選擇</div>

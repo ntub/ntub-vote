@@ -4,6 +4,7 @@ import { HeaderMod } from './enums';
 import { AuthService } from '../shared-services/auth.service';
 import { Router } from '@angular/router';
 import { TimeService } from '../shared-services/time.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-header',
@@ -18,7 +19,9 @@ export class HeaderComponent implements OnInit {
   constructor(private auth: AuthService,
               private router: Router,
               private timeService: TimeService,
-              private zone: NgZone) { }
+              private zone: NgZone,
+              private spinner: NgxSpinnerService
+              ) { }
 
   async ngOnInit() {
     const isVoteTime = await this.timeService.isVoteTime();
@@ -34,9 +37,13 @@ export class HeaderComponent implements OnInit {
     if (this.auth.isAuthenticated) {
       this.router.navigate(['/vote-list']);
     } else if (isVoteTime) {
+      this.spinner.show();
       this.auth.login().subscribe(() => {
         this.zone.run(() => {
+          this.spinner.hide();
           this.router.navigate(['/vote-list']);
+        }, error => {
+          this.spinner.hide();
         });
       });
     } else {

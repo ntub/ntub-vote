@@ -3,11 +3,11 @@ import { NavbarMod } from '../navbar/enums';
 import { HeaderMod } from '../header/enums';
 import { FooterMod } from '../footer/enums';
 import { CandidateService } from '../shared-services/candidate.service';
-import { mergeMap, shareReplay, toArray, reduce, map, tap } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
+import { mergeMap, shareReplay, toArray, reduce, map, tap, filter } from 'rxjs/operators';
 import { groupBy } from 'lodash';
 import { Candidate } from '../model/candidate.model';
 import { TimeService } from '../shared-services/time.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-home',
@@ -22,9 +22,14 @@ export class HomeComponent implements OnInit {
   footerMod = FooterMod.Home;
   headerMod = HeaderMod.None;
 
-  constructor(private candidateService: CandidateService, private timeService: TimeService) { }
+  constructor(
+    private candidateService: CandidateService,
+    private timeService: TimeService,
+    private spinner: NgxSpinnerService
+  ) { }
 
   ngOnInit() {
+    this.spinner.show();
     this.candidateService.getCandidates()
       .pipe(
         mergeMap(candidate => candidate),
@@ -45,10 +50,13 @@ export class HomeComponent implements OnInit {
         }
       );
     this.timeService.isVoteTime().then(result => {
+      this.spinner.hide();
       if (result) {
         this.headerMod = HeaderMod.Home;
       }
       this.headerMod = HeaderMod.None;
+    }).catch(() => {
+      this.spinner.hide();
     });
   }
 

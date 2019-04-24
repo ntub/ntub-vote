@@ -25,13 +25,11 @@ export class MemberComponent implements OnInit {
       map(params => +params.get('id')),
       switchMap(id => this.votePoolService.getVotePool(id))
     ).subscribe(result => {
-      console.log(result);
       this.votePool = result;
     });
   }
 
   onSelected(vote: SendVote) {
-    console.log(vote);
     this.vote = vote;
   }
 

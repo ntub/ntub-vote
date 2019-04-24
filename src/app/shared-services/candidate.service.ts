@@ -11,10 +11,10 @@ export class CandidateService {
     constructor(private http: HttpClient) { }
 
     getCandidates(): Observable<Candidate[]> {
-        return this.http.get<Candidate[]>('/api/candidates');
+        return this.http.get<Candidate[]>(`${this.apiServer}/api/candidates`);
     }
 
     getCandidate(id: number): Observable<Candidate> {
-        return this.http.get<Candidate>(`/api/candidates/${id}`);
+        return this.http.get<Candidate>(`${this.apiServer}/api/candidates/${id}`);
     }
 }

@@ -12,15 +12,15 @@ export class VotePoolService {
   constructor(private http: HttpClient) { }
 
   getVotePools(): Observable<VotePool[]> {
-      return this.http.get<VotePool[]>('/api/vote-pools');
+      return this.http.get<VotePool[]>(`${this.apiServer}/api/vote-pools`);
   }
 
   getVotePool(id: number): Observable<VotePoolDetail> {
-      return this.http.get<VotePoolDetail>(`/api/vote-pools/${id}`);
+      return this.http.get<VotePoolDetail>(`${this.apiServer}/api/vote-pools/${id}`);
   }
 
   createVote(vote: SendVote): Observable<any> {
-    return this.http.post<any>('/api/votes', {
+    return this.http.post<any>(`${this.apiServer}/api/votes`, {
       candidate: vote.id,
       is_agree: vote.isAgree
     });
