@@ -26,6 +26,7 @@ import { AuthService } from './shared-services/auth.service';
 import { JwtInterceptor } from '@auth0/angular-jwt';
 import { JWTInterceptorProvider, RefreshTokenInterceptorProvider, JWTModule } from './jwt.config';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     AngularFireAuthModule,
     HttpClientModule,
     JWTModule,
+    ScrollToModule.forRoot()
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: RequestHttpInterceptor, multi: true },

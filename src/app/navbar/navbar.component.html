@@ -5,9 +5,9 @@
       <li class="outline-button" (click)="logout()">離開投票</li>
     </ng-container>
     <ng-container *ngSwitchCase="navModType.VoteList">
-      <li href="#president">會長候選人</li>
-      <li href="#councilor">議員候選人</li>
-      <li href="#representative">各系學生代表</li>
+      <li [ngx-scroll-to]="'president'" [ngx-scroll-to-offset]="-64">會長候選人</li>
+      <li [ngx-scroll-to]="'councilor'" [ngx-scroll-to-offset]="-64">議員候選人</li>
+      <li [ngx-scroll-to]="'representative'" [ngx-scroll-to-offset]="-64">各系學生代表</li>
       <!-- <li class="outline-button">投票結果</li> -->
     </ng-container>
   </ul>
