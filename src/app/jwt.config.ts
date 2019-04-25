@@ -10,7 +10,7 @@ export function jwtOptionsFactory(authorizationService: AuthService) {
     tokenGetter: () => {
       return authorizationService.getAccessToken();
     },
-    whitelistedDomains: [environment.apiServer],
+    whitelistedDomains: [environment.apiServer ? environment.apiServer.split('://')[1] : ''],
     blacklistedRoutes: []
   };
 }
