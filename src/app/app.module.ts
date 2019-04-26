@@ -27,6 +27,8 @@ import { JwtInterceptor } from '@auth0/angular-jwt';
 import { JWTInterceptorProvider, RefreshTokenInterceptorProvider, JWTModule } from './jwt.config';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+
 
 @NgModule({
   declarations: [
@@ -51,7 +53,13 @@ import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
     AngularFireAuthModule,
     HttpClientModule,
     JWTModule,
-    ScrollToModule.forRoot()
+    ScrollToModule.forRoot(),
+    SweetAlert2Module.forRoot({
+      buttonsStyling: false,
+      customClass: 'modal-content',
+      confirmButtonClass: 'btn btn-primary',
+      cancelButtonClass: 'btn'
+    })
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: RequestHttpInterceptor, multi: true },
