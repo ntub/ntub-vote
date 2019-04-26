@@ -3,13 +3,16 @@
 <article *ngIf="votePool">
   <section class="vote-layout">
     <h4>{{ votePool.name }}</h4>
-    <ul class="member-list" >
+    <ul class="member-list">
       <li *ngFor="let candidate of votePool.candidates">
-        <app-member-item [isMany]="votePool.candidates.length > 1" [selectId]="vote ? vote.id : null"
-          [candidate]="candidate" (voteChanged)="onSelected($event)">
+        <app-member-item [isMany]="votePool.candidates.length > 1"
+                         [selectId]="vote ? vote.id : null"
+                         [candidate]="candidate"
+                         (voteChanged)="onSelected($event)">
         </app-member-item>
       </li>
     </ul>
   </section>
 </article>
-<app-footer [footerMod]="footerMod" [submitVote]="vote"></app-footer>
+<app-footer [footerMod]="footerMod"
+            [submitVote]="vote"></app-footer>

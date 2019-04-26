@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { NavbarMod } from '../navbar/enums';
-import { FooterMod } from '../footer/enums';
-import { ActivatedRoute } from '@angular/router';
-import { switchMap, map } from 'rxjs/operators';
-import { VotePoolService } from '../shared-services/vote-pool.service';
-import { VotePoolDetail, SendVote } from '../model/vote-pool.model';
+import { Component, OnInit } from '@angular/core'
+import { ActivatedRoute } from '@angular/router'
+import { map, switchMap } from 'rxjs/operators'
+
+import { FooterMod } from '../footer/enums'
+import { SendVote, VotePoolDetail } from '../model/vote-pool.model'
+import { NavbarMod } from '../navbar/enums'
+import { VotePoolService } from '../shared-services/vote-pool.service'
 
 @Component({
   selector: 'app-member',
@@ -21,11 +22,13 @@ export class MemberComponent implements OnInit {
   constructor(private route: ActivatedRoute, private votePoolService: VotePoolService) { }
 
   ngOnInit() {
+
     this.route.paramMap.pipe(
       map(params => +params.get('id')),
       switchMap(id => this.votePoolService.getVotePool(id))
     ).subscribe(result => {
       this.votePool = result;
+      this.vote = { id: this.votePool.candidates[0].id, isAgree: true };
     });
   }
 
