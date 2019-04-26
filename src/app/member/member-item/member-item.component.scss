@@ -10,12 +10,13 @@
 
   img {
     min-height: 200px;
+    max-width: 120%;
   }
 }
 
 .content {
   h5 {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 
   h6 {
@@ -28,7 +29,7 @@
   .vote-select {
     .btn {
       padding: 0.5rem 0;
-      min-width: 8rem;
+      min-width: 7rem;
       border: 2px solid #CDD6DD;
       border-radius: 8px;
       color: #6F7579;
@@ -40,7 +41,7 @@
         color: #FFFFFF;
       }
 
-      &::nth-child(2) {
+      &:nth-child(2) {
         margin-left: 0.8rem;
       }
     }

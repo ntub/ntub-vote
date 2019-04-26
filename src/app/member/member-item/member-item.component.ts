@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Candidate } from 'src/app/model/candidate.model';
-import { SendVote } from 'src/app/model/vote-pool.model';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import { Candidate } from 'src/app/model/candidate.model'
+import { SendVote } from 'src/app/model/vote-pool.model'
 
 @Component({
   selector: 'app-member-item',
@@ -13,7 +13,7 @@ export class MemberItemComponent implements OnInit {
   @Input() selectId?: number = null;
   @Output() voteChanged: EventEmitter<SendVote> = new EventEmitter<SendVote>();
   @Input() candidate: Candidate;
-  isAgree?: boolean = null;
+  isAgree?: boolean = true;
 
   constructor() { }
 
@@ -26,7 +26,7 @@ export class MemberItemComponent implements OnInit {
 
   selectCandidate(agree: boolean = true) {
     this.isAgree = agree;
-    this.voteChanged.emit({id: this.candidate.id, isAgree: agree});
+    this.voteChanged.emit({ id: this.candidate.id, isAgree: agree });
   }
 
 }

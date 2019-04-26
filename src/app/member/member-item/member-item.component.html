@@ -1,17 +1,27 @@
 <div class="avatar">
-  <img [src]="candidate.image" alt="" srcset="">
+  <img [src]="candidate.image"
+       alt=""
+       srcset="">
 </div>
 <div class="content">
   <h5>{{ candidate.name }}</h5>
   <h6>{{ candidate.klass }}</h6>
-  <div class="vote-select" [ngSwitch]="isMany">
+  <div class="vote-select"
+       [ngSwitch]="isMany">
     <ng-container *ngSwitchCase="false">
-      <div [ngClass]="isAgree === true ? 'btn select' : 'btn'" (click)="selectCandidate(true)">同意</div>
-      <div [ngClass]="isAgree === false ? 'btn select' : 'btn'" (click)="selectCandidate(false)">不同意</div>
+      <div class="btn"
+           [ngClass]="{'select' : isAgree}"
+           (click)="selectCandidate(true)">同意</div>
+      <div class="btn"
+           [ngClass]="{'select' : !isAgree}"
+           (click)="selectCandidate(false)">不同意</div>
     </ng-container>
     <ng-container *ngSwitchCase="true">
-        <div class="btn select" *ngIf="isSelected">已選擇</div>
-        <div class="btn" *ngIf="!isSelected" (click)="selectCandidate()">未選擇</div>
+      <div class="btn select"
+           *ngIf="isSelected">已選擇</div>
+      <div class="btn"
+           *ngIf="!isSelected"
+           (click)="selectCandidate()">未選擇</div>
     </ng-container>
   </div>
 </div>
