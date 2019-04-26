@@ -45,3 +45,38 @@ footer {
     width: 100%;
   }
 }
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 0;
+  border-radius: 7px;
+  background-color: #3B4043;
+  color: #FFFFFF;
+}
+
+.check-text {
+  text-align: center;
+}
+
+::ng-deep .swal2-actions {
+  .btn {
+    padding: 0.5rem 0;
+    min-width: 7rem;
+    border: 2px solid #CDD6DD;
+    border-radius: 8px;
+    color: #6F7579;
+    font-size: 0.9rem;
+    cursor: pointer;
+
+    &.btn-primary {
+      background-color: #6F7579;
+      color: #FFFFFF;
+    }
+
+    &:nth-child(2) {
+      margin-left: 0.8rem;
+    }
+  }
+}
