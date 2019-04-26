@@ -22,7 +22,19 @@
     transition: .3s ease-in-out;
 
     &:hover {
-      background-color: #CDD6DD;
+      background-color: #959ea6;
+      color: #FFFFFF;
+    }
+
+    &.complete {
+      opacity: 0.6;
+      cursor: no-drop;
+      transition: none;
+
+      &:hover {
+        background-color: inherit;
+        color: inherit;
+      }
     }
 
     h5 {
@@ -38,11 +50,6 @@
         margin-right: 0.3rem;
       }
     }
-  }
-
-  li.complete {
-    opacity: 0.8;
-    cursor: no-drop;
   }
 }
 

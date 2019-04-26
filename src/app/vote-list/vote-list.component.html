@@ -3,7 +3,9 @@
   <section class="vote-layout">
     <h4>投票列表</h4>
     <ul class="vote-list">
-      <li (click)="toVoting(votePool)" *ngFor="let votePool of votePools$ | async">
+      <li [ngClass]="{'complete': votePool.voted}"
+          (click)="toVoting(votePool)"
+          *ngFor="let votePool of votePools$ | async">
         <h5>{{ votePool.name }}</h5>
         <span *ngIf="votePool.voted; else noVote">
           <i class="material-icons">
