@@ -28,7 +28,6 @@ export class MemberComponent implements OnInit {
       switchMap(id => this.votePoolService.getVotePool(id))
     ).subscribe(result => {
       this.votePool = result;
-      this.vote = { id: this.votePool.candidates[0].id, isAgree: true };
     });
   }
 

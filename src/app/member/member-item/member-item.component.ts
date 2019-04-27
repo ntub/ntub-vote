@@ -13,7 +13,7 @@ export class MemberItemComponent implements OnInit {
   @Input() selectId?: number = null;
   @Output() voteChanged: EventEmitter<SendVote> = new EventEmitter<SendVote>();
   @Input() candidate: Candidate;
-  isAgree?: boolean = true;
+  isAgree?: boolean = null;
 
   constructor() { }
 
