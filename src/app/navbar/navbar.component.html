@@ -10,5 +10,8 @@
       <li [ngx-scroll-to]="'representative'" [ngx-scroll-to-offset]="-64">各系學生代表</li>
       <!-- <li class="outline-button">投票結果</li> -->
     </ng-container>
+    <ng-container *ngSwitchCase="navModType.VoteEnd">
+      <li class="outline-button" routerLink="/">回首頁</li>
+    </ng-container>
   </ul>
 </nav>

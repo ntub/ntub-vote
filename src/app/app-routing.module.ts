@@ -6,12 +6,23 @@ import { MemberComponent } from './member/member.component';
 import { VoteListComponent } from './vote-list/vote-list.component';
 import { VoteCompleteComponent } from './vote-complete/vote-complete.component';
 import { LoginGuard } from './guards/login.guard';
+import { ResultComponent } from './result/result.component';
+import { ResultGuard } from './guards/result.guard';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'member/:id', component: MemberComponent, canActivate: [LoginGuard] },
-  { path: 'vote-list', component: VoteListComponent, canActivate: [LoginGuard] },
-  { path: 'vote-complete', component: VoteCompleteComponent, canActivate: [LoginGuard] },
+  {
+    path: 'vote-list',
+    component: VoteListComponent,
+    canActivate: [LoginGuard]
+  },
+  {
+    path: 'vote-complete',
+    component: VoteCompleteComponent,
+    canActivate: [LoginGuard]
+  },
+  { path: 'result', component: ResultComponent, canActivate: [ResultGuard] },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 
@@ -19,4 +30,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
