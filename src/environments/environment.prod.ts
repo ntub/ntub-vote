@@ -8,5 +8,5 @@ export const environment = {
     storageBucket: 'ntub-vote.appspot.com',
     messagingSenderId: '180728485009'
   },
-  apiServer: ''
+  apiServer: 'https://ntub-vote-server.arthurc.me'
 };
