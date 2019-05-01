@@ -10,4 +10,6 @@ RUN npm run build:docker
 
 FROM nginx:alpine
 
-COPY --from=0 /app/src/dist/* /usr/share/nginx/html/
+WORKDIR /var/www/ntub-vote
+
+COPY --from=0 /app/src/dist/* .
