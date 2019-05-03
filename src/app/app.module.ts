@@ -33,6 +33,27 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { ResultComponent } from './result/result.component';
+import { LoginComponent } from './login/login.component';
+
+import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
+import {
+  GoogleLoginProvider,
+  FacebookLoginProvider,
+  LinkedInLoginProvider
+} from 'angularx-social-login';
+import { LogoutComponent } from './logout/logout.component';
+const config = new AuthServiceConfig([
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider(
+      '251258190697-5ipo273duorqlc70uhphov938biv4b55.apps.googleusercontent.com'
+    )
+  }
+]);
+
+export function provideConfig() {
+  return config;
+}
 
 @NgModule({
   declarations: [
@@ -48,7 +69,9 @@ import { ResultComponent } from './result/result.component';
     MemberItemComponent,
     VoteCompleteComponent,
     VoteListComponent,
-    ResultComponent
+    ResultComponent,
+    LoginComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
@@ -64,13 +87,18 @@ import { ResultComponent } from './result/result.component';
       customClass: 'modal-content',
       confirmButtonClass: 'btn btn-primary',
       cancelButtonClass: 'btn'
-    })
+    }),
+    SocialLoginModule
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: RequestHttpInterceptor,
       multi: true
+    },
+    {
+      provide: AuthServiceConfig,
+      useFactory: provideConfig
     },
     // { provide: LOCALE_ID, useValue: 'zh-Hant' },
     AuthService,

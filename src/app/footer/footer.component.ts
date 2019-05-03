@@ -1,6 +1,6 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core'
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 
-import { FooterMod } from './enums'
+import { FooterMod } from './enums';
 import { SendVote } from '../model/vote-pool.model';
 import { VotePoolService } from '../shared-services/vote-pool.service';
 import { Router } from '@angular/router';
@@ -31,10 +31,9 @@ export class FooterComponent implements OnInit {
     private votePoolService: VotePoolService,
     private router: Router,
     private spinner: NgxSpinnerService
-  ) { }
+  ) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   scrollTop() {
     window.scroll(0, 0);
@@ -42,17 +41,16 @@ export class FooterComponent implements OnInit {
 
   onBeforeOpen(event) {
     console.log('before');
-    for (let i = 0; i < 999; i++) {
-
-    }
+    for (let i = 0; i < 999; i++) {}
   }
 
   submit() {
-
     if (this.submitVote) {
       console.log(this.submitVote);
       this.spinner.show();
-      this.candidateService.getCandidate(this.submitVote.id).toPromise()
+      this.candidateService
+        .getCandidate(this.submitVote.id)
+        .toPromise()
         .then(candidate => {
           this.candidate = candidate;
           return;
@@ -65,10 +63,10 @@ export class FooterComponent implements OnInit {
           console.log(check);
           if (check.value) {
             this.spinner.show();
-            this.votePoolService.createVote(this.submitVote)
-              .pipe(
-                finalize(() => this.spinner.hide())
-              ).subscribe(() => {
+            this.votePoolService
+              .createVote(this.submitVote)
+              .pipe(finalize(() => this.spinner.hide()))
+              .subscribe(() => {
                 this.router.navigate(['/vote-list']);
               });
           }
@@ -79,11 +77,9 @@ export class FooterComponent implements OnInit {
         })
         .finally(() => {
           this.spinner.hide();
-        })
-
+        });
     } else {
       alert('請選擇候選人!');
     }
   }
-
 }

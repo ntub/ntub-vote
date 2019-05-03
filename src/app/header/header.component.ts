@@ -43,29 +43,31 @@ export class HeaderComponent implements OnInit {
   }
 
   async login() {
-    const isVoteTime = await this.timeService.isVoteTime();
-    if (this.auth.isAuthenticated) {
-      this.router.navigate(['/vote-list']);
-    } else if (isVoteTime) {
-      this.spinner.show();
-      this.auth.login().subscribe(() => {
-        this.zone.run(
-          () => {
-            this.spinner.hide();
-            this.router.navigate(['/vote-list']);
-          },
-          error => {
-            this.spinner.hide();
-          }
-        );
-      });
-    } else {
-      this.router.navigate(['/home']);
-    }
+    this.router.navigate(['/login']);
+    // const isVoteTime = await this.timeService.isVoteTime();
+    // if (this.auth.isAuthenticated) {
+    //   this.router.navigate(['/vote-list']);
+    // } else if (isVoteTime) {
+    //   this.spinner.show();
+    //   this.auth.login().subscribe(() => {
+    //     this.zone.run(
+    //       () => {
+    //         this.spinner.hide();
+    //         this.router.navigate(['/vote-list']);
+    //       },
+    //       error => {
+    //         this.spinner.hide();
+    //       }
+    //     );
+    //   });
+    // } else {
+    //   this.router.navigate(['/home']);
+    // }
   }
 
   logout() {
     this.auth.logout();
-    this.router.navigate(['/home']);
+    this.router.navigate(['/logout']);
+    // this.router.navigate(['/home']);
   }
 }
