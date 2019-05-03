@@ -1,3 +1,4 @@
+import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, ExtraOptions } from '@angular/router';
 
@@ -8,9 +9,12 @@ import { VoteCompleteComponent } from './vote-complete/vote-complete.component';
 import { LoginGuard } from './guards/login.guard';
 import { ResultComponent } from './result/result.component';
 import { ResultGuard } from './guards/result.guard';
+import { LogoutComponent } from './logout/logout.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'logout', component: LogoutComponent },
   { path: 'member/:id', component: MemberComponent, canActivate: [LoginGuard] },
   {
     path: 'vote-list',

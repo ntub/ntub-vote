@@ -8,11 +8,13 @@ import { map, mergeMap } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
 
+import { AuthService as SocialAuthService } from 'angularx-social-login';
+import { GoogleLoginProvider } from 'angularx-social-login';
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
   private accessTokenField = 'access';
   // private refreshTokenField = 'refresh';
 
@@ -20,23 +22,26 @@ export class AuthService {
   serverURL: string = environment.apiServer;
   token: string;
 
-  // tslint:disable-next-line:variable-name
-  constructor(public afAuth: AngularFireAuth, private _http: HttpClient, private router: Router) {
+  constructor(
+    public afAuth: AngularFireAuth,
+    // tslint:disable-next-line:variable-name
+    private _http: HttpClient,
+    private router: Router,
+    private socialAuthService: SocialAuthService
+  ) {
     this.provider.addScope('email');
     this.provider.addScope('profile');
   }
 
-  login() {
-    const authSource = from(this.afAuth.auth.signInWithPopup(this.provider));
-    const dataSource =  authSource.pipe(
-      // tslint:disable-next-line:no-string-literal
-      map(result => result.credential['accessToken']),
+  loginGoogle() {
+    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
+    const dataSource = this.socialAuthService.authState.pipe(
+      map(user => user.idToken),
       mergeMap(accessToken => {
         return this._http.post(`${this.serverURL}/api/auth/google`, {
           token: accessToken
         });
-      },
-      ),
+      })
     );
     const subject = new ReplaySubject<any>(1);
     subject.subscribe(
@@ -52,6 +57,39 @@ export class AuthService {
     return subject;
   }
 
+  signOutGoogle(): void {
+    this.socialAuthService.signOut();
+  }
+
+  login() {
+    const dataSource = this.socialAuthService.authState.pipe(
+      map(user => {
+        console.log(user);
+        return user.authToken;
+      }),
+      mergeMap(accessToken => {
+        console.log(accessToken);
+        return this._http.post(`${this.serverURL}/api/auth/google`, {
+          token: accessToken
+        });
+      })
+    );
+    const subject = new ReplaySubject<any>(1);
+    subject.subscribe(
+      result => {
+        console.log('subject');
+        // tslint:disable-next-line:no-string-literal
+        this.setAccessToken(result['token']);
+      },
+      err => {
+        console.log('subject err');
+        this.handleAuthenticationError(err);
+      }
+    );
+    dataSource.subscribe(subject);
+    return subject;
+  }
+
   logout() {
     this.afAuth.auth.signOut();
     localStorage.clear();
@@ -59,9 +97,12 @@ export class AuthService {
   }
 
   refresh() {
-    const refreshSource = this._http.post(`${this.serverURL}/api/auth/refresh`, {
-      token: this.getAccessToken()
-    });
+    const refreshSource = this._http.post(
+      `${this.serverURL}/api/auth/refresh`,
+      {
+        token: this.getAccessToken()
+      }
+    );
     const subject = new ReplaySubject<any>(1);
     subject.subscribe(
       result => {
