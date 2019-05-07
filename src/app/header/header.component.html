@@ -1,4 +1,5 @@
 <header [ngSwitch]="headerMod">
+  <!-- <button (click)="testLogin()">LOGIN</button> -->
 
   <ng-container *ngSwitchCase="headerModType.Home">
     <ng-container *ngIf="time$ | async as time">

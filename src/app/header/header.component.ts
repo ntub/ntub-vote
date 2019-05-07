@@ -8,6 +8,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable } from 'rxjs';
 import { Time } from '../model/time.model';
 import { DatePipe } from '@angular/common';
+import { AuthService as SocialAuthService } from 'angularx-social-login';
+import { GoogleLoginProvider } from 'angularx-social-login';
 
 @Component({
   selector: 'app-header',
@@ -19,11 +21,13 @@ export class HeaderComponent implements OnInit {
   headerModType = HeaderMod;
   time$: Observable<Time>;
   constructor(
-    private auth: AuthService,
+    private authService: AuthService,
     private router: Router,
     private timeService: TimeService,
     private zone: NgZone,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+
+    private socialAuthService: SocialAuthService
   ) {
     this.time$ = timeService.getTime();
   }
@@ -42,31 +46,60 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  async testLogin() {
+    this.socialAuthService
+      .signIn(GoogleLoginProvider.PROVIDER_ID)
+      .then(_ => {
+        this.authService.login().subscribe(() => {
+          this.spinner.hide();
+          this.router.navigate(['/vote-list']);
+        });
+      })
+      .catch(err => {
+        this.spinner.hide();
+        this.router.navigate(['/home']);
+        console.log(err);
+      });
+  }
+
   async login() {
-    this.router.navigate(['/login']);
-    // const isVoteTime = await this.timeService.isVoteTime();
-    // if (this.auth.isAuthenticated) {
-    //   this.router.navigate(['/vote-list']);
-    // } else if (isVoteTime) {
-    //   this.spinner.show();
-    //   this.auth.login().subscribe(() => {
-    //     this.zone.run(
-    //       () => {
-    //         this.spinner.hide();
-    //         this.router.navigate(['/vote-list']);
-    //       },
-    //       error => {
-    //         this.spinner.hide();
-    //       }
-    //     );
-    //   });
-    // } else {
-    //   this.router.navigate(['/home']);
-    // }
+    // this.router.navigate(['/login']);
+    const isVoteTime = await this.timeService.isVoteTime();
+    if (this.authService.isAuthenticated) {
+      this.router.navigate(['/vote-list']);
+    } else if (isVoteTime) {
+      this.spinner.show();
+      // this.auth.login().subscribe(() => {
+      //   this.zone.run(
+      //     () => {
+      //       this.spinner.hide();
+      //       this.router.navigate(['/vote-list']);
+      //     },
+      //     error => {
+      //       this.spinner.hide();
+      //     }
+      //   );
+      // });
+      this.socialAuthService
+        .signIn(GoogleLoginProvider.PROVIDER_ID)
+        .then(_ => {
+          this.authService.login().subscribe(() => {
+            this.spinner.hide();
+            this.router.navigate(['/vote-list']);
+          });
+        })
+        .catch(err => {
+          this.spinner.hide();
+          this.router.navigate(['/home']);
+          console.log(err);
+        });
+    } else {
+      this.router.navigate(['/home']);
+    }
   }
 
   logout() {
-    this.auth.logout();
+    this.authService.logout();
     this.router.navigate(['/logout']);
     // this.router.navigate(['/home']);
   }

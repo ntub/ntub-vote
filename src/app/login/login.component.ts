@@ -6,6 +6,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { Router } from '@angular/router';
 import { TimeService } from '../shared-services/time.service';
 import { Subscription } from 'rxjs';
+import { Login } from '../model/auth.model';
 
 @Component({
   selector: 'app-login',
