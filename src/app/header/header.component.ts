@@ -47,6 +47,7 @@ export class HeaderComponent implements OnInit {
   }
 
   async testLogin() {
+    alert('click');
     this.socialAuthService
       .signIn(GoogleLoginProvider.PROVIDER_ID)
       .then(_ => {
@@ -64,10 +65,11 @@ export class HeaderComponent implements OnInit {
 
   async login() {
     // this.router.navigate(['/login']);
-    const isVoteTime = await this.timeService.isVoteTime();
+    // const isVoteTime = await this.timeService.isVoteTime();
     if (this.authService.isAuthenticated) {
       this.router.navigate(['/vote-list']);
-    } else if (isVoteTime) {
+    } else {
+      // alert('gogo');
       this.spinner.show();
       // this.auth.login().subscribe(() => {
       //   this.zone.run(
@@ -93,8 +95,6 @@ export class HeaderComponent implements OnInit {
           this.router.navigate(['/home']);
           console.log(err);
         });
-    } else {
-      this.router.navigate(['/home']);
     }
   }
 

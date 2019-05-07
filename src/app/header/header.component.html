@@ -7,7 +7,7 @@
         <h2>今天的你，投票了嗎？</h2>
         <span>{{time.startAt | date:'yyyy'}}年學生會長副會長投票，從 {{time.startAt | date:'shortTime'}}到 {{time.endAt | date:'shortTime'}}熱烈招募中</span>
         <!-- <a class="button" [routerLink]="['/vote-list']">前往投票</a> -->
-        <a class="button" (click)="login()">前往投票</a>
+        <a *ngIf="(time$ | async).isVoteTime" class="button" (click)="login()">前往投票</a>
         <!-- <a=class="button" routerLink="/result">察看結果</a> -->
 
       </div>
