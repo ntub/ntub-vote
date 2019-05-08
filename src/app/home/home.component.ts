@@ -35,18 +35,14 @@ export class HomeComponent implements OnInit {
         mergeMap(candidate => candidate),
         toArray(),
         map(candidate => groupBy(candidate, item => {
-          if (item.pool.includes('議員')) {
-            return '議員';
-          } else {
-            return item.pool;
-          }
+          return item.pool.slice(-2);
         }))
       ).subscribe(
         data => {
           console.log(data);
           this.presidents = data.會長;
           this.councilors = data.議員;
-          this.representatives = data.學生代表;
+          this.representatives = data.代表;
         }
       );
     this.timeService.isVoteTime().then(result => {
