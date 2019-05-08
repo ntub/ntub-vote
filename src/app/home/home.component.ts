@@ -34,9 +34,7 @@ export class HomeComponent implements OnInit {
       .pipe(
         mergeMap(candidate => candidate),
         toArray(),
-        map(candidate => groupBy(candidate, item => {
-          return item.pool.slice(-2);
-        }))
+        map(candidate => groupBy(candidate, item => item.pool.slice(-2)))
       ).subscribe(
         data => {
           console.log(data);

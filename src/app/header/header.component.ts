@@ -10,6 +10,7 @@ import { Time } from '../model/time.model';
 import { DatePipe } from '@angular/common';
 import { AuthService as SocialAuthService } from 'angularx-social-login';
 import { GoogleLoginProvider } from 'angularx-social-login';
+import { catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
@@ -88,11 +89,14 @@ export class HeaderComponent implements OnInit {
           this.authService.login().subscribe(() => {
             this.spinner.hide();
             this.router.navigate(['/vote-list']);
+          }, err => {
+            this.router.navigate(['/logout'])
           });
         })
         .catch(err => {
           this.spinner.hide();
-          this.router.navigate(['/home']);
+          this.router.navigate(['/logout']);
+          // this.router.navigate(['/home']);
           console.log(err);
         });
     }

@@ -11,7 +11,7 @@ import { tap, map } from 'rxjs/operators';
 })
 export class PresidentComponent implements OnInit {
   @Input() presidents: Candidate[];
-  constructor(private candidateService: CandidateService) { }
+  constructor() { }
 
   ngOnInit() {
   }
