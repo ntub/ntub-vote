@@ -84,7 +84,9 @@ export class HeaderComponent implements OnInit {
       //   );
       // });
       this.socialAuthService
-        .signIn(GoogleLoginProvider.PROVIDER_ID)
+        .signIn(GoogleLoginProvider.PROVIDER_ID,{
+          prompt: 'select_account'
+        })
         .then(_ => {
           this.authService.login().subscribe(() => {
             this.spinner.hide();
