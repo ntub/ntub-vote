@@ -1,0 +1,92 @@
+/* Result list */
+.person-result-list {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.person-result-list li {
+  display: inline-flex;
+  flex-wrap: wrap;
+  padding-bottom: 1rem;
+  max-width: 1280px;
+  width: 90%;
+}
+
+.person-result-list li:nth-child(2n) .person {
+  order: 2;
+}
+
+.person-result-list li .person {
+  display: flex;
+  align-items: center;
+  flex: 1 0 40%;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.person-result-list li .person .avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 250px;
+  height: 250px;
+}
+
+.person-result-list li .person .avatar img {
+  max-height: 250px;
+}
+
+.person-result-list li .person h3 {
+  margin: 0.6rem;
+}
+
+.person-result-list li .chart {
+  flex: 1 1 60%;
+}
+
+.person-result-list li .chart img {
+  width: 100%;
+}
+
+/* Result list end */
+
+.member-result-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.member-result-list li {
+  flex: 1 1;
+  margin-bottom: 1.4rem;
+  padding: 0 1rem;
+  max-width: 50%;
+  text-align: center;
+}
+
+.member-result-list li .avatar {
+  margin-bottom: 1rem;
+}
+
+.member-result-list li .avatar img {
+  max-width: 220px;
+  width: 100%;
+}
+
+.member-result-list+.chart {
+  margin: 0 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.member-result-list+.chart img {
+  width: 100%;
+}
+
+@media only screen and (max-width: 720px) {
+  .member-result-list li {
+    max-width: 100%;
+  }
+}

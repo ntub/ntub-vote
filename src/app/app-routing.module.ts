@@ -27,6 +27,7 @@ const routes: Routes = [
     canActivate: [LoginGuard]
   },
   { path: 'result', component: ResultComponent, canActivate: [ResultGuard] },
+  { path: 'result1', component: ResultComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 

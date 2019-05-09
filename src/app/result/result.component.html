@@ -1,5 +1,46 @@
 <app-navbar [navMod]="navMod"></app-navbar>
 
-<p>
-  result works!
-</p>
+<header class="result">
+  <div class="header-banner end">
+    <h2>投票結果</h2>
+  </div>
+</header>
+<article>
+  <section id="president" *ngIf="presidentElected">
+    <h4>會長獲選人</h4>
+    <ul class="person-result-list">
+      <li>
+        <div class="person">
+          <div class="avatar">
+            <img [src]="presidentElected.image" alt="" />
+          </div>
+          <h3>{{ presidentElected.name }}</h3>
+          <h5>{{ presidentElected.klass }}</h5>
+          <h6>得票數： {{ presidentElected.voteCount }}</h6>
+        </div>
+        <div class="chart" echarts [options]="persidentChartOption"></div>
+      </li>
+    </ul>
+  </section>
+  <section id="councilor" *ngIf="councilors">
+    <h4>議員候選人</h4>
+    <ul class="member-result-list">
+      <li *ngFor="let councilor of councilors">
+        <div class="avatar">
+          <img [src]="councilor.image" alt="" />
+        </div>
+        <h3>{{ councilor.name }}</h3>
+        <h5>{{ councilor.klass }}</h5>
+        <h6>得票數： {{ councilor.voteCount }}</h6>
+      </li>
+    </ul>
+    <div class="chart" echarts [options]="councilorChartOption"></div>
+  </section>
+
+  <section id="representative">
+    <h4>各系代表候選人</h4>
+    <div class="chart" echarts [options]="councilorChartOption"></div>
+  </section>
+</article>
+
+<app-footer></app-footer>

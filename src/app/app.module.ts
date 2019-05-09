@@ -35,6 +35,8 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { ResultComponent } from './result/result.component';
 import { LoginComponent } from './login/login.component';
 
+import { NgxEchartsModule } from 'ngx-echarts';
+
 import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
 import {
   GoogleLoginProvider,
@@ -88,7 +90,8 @@ export function provideConfig() {
       confirmButtonClass: 'btn btn-primary',
       cancelButtonClass: 'btn'
     }),
-    SocialLoginModule
+    SocialLoginModule,
+    NgxEchartsModule
   ],
   providers: [
     {
