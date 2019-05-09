@@ -1,3 +1,11 @@
+article {
+  margin-bottom: 1rem;
+
+  section:nth-child(2n) {
+    background-color: #F0F3F5;
+  }
+}
+
 /* Result list */
 .person-result-list {
   display: flex;
@@ -6,49 +14,47 @@
   width: 100%;
 
   li {
-    display: inline-flex;
+    display: flex;
     flex-wrap: wrap;
     padding-bottom: 1rem;
     max-width: 1280px;
     width: 90%;
+
+    .person {
+      display: flex;
+      align-items: center;
+      flex: 1 0 20%;
+      flex-direction: column;
+      justify-content: center;
+
+      .avatar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 250px;
+        height: 250px;
+
+        img {
+          max-height: 250px;
+        }
+      }
+
+      h3 {
+        margin: 0.6rem;
+      }
+    }
+
+    &:nth-child(2n) .person {
+      order: 2;
+    }
+  }
+
+  .chart {
+    flex: 1 1 60%;
   }
 }
 
-.person-result-list li:nth-child(2n) .person {
-  order: 2;
-}
 
-.person-result-list li .person {
-  display: flex;
-  align-items: center;
-  flex: 1 0 20%;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.person-result-list li .person .avatar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 250px;
-  height: 250px;
-}
-
-.person-result-list li .person .avatar img {
-  max-height: 250px;
-}
-
-.person-result-list li .person h3 {
-  margin: 0.6rem;
-}
-
-.person-result-list li .chart {
-  flex: 1 1 60%;
-}
-
-.person-result-list li .chart img {
-  width: 100%;
-}
 
 /* Result list end */
 
@@ -56,33 +62,42 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  width: 100%;
-}
+  margin: 0 1rem 1rem 1rem;
+  margin: auto;
+  max-width: 1280px;
+  width: calc(100% - 2rem);
 
-.member-result-list li {
-  flex: 1 1;
-  margin-bottom: 1.4rem;
-  padding: 0 1rem;
-  max-width: 50%;
-  text-align: center;
-}
+  li {
+    flex: 1 1;
+    margin-bottom: 1.4rem;
+    padding: 0 1rem;
+    min-width: 280px;
+    max-width: 50%;
+    text-align: center;
 
-.member-result-list li .avatar {
-  margin-bottom: 1rem;
-}
+    .avatar {
+      display: flex;
+      overflow: hidden;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      height: 300px;
 
-.member-result-list li .avatar img {
-  max-width: 220px;
-  width: 100%;
-}
+      img {
+        min-height: 300px;
+        max-height: 320px;
+      }
+    }
+  }
 
-.member-result-list+.chart {
-  margin: 0 2rem;
-  margin-bottom: 1.5rem;
-}
+  &+.chart {
+    margin: 0 2rem;
+    margin-bottom: 1.5rem;
 
-.member-result-list+.chart img {
-  width: 100%;
+    img {
+      width: 100%;
+    }
+  }
 }
 
 @media only screen and (max-width: 720px) {
