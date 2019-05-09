@@ -100,7 +100,7 @@ export class HeaderComponent implements OnInit {
         })
         .catch(err => {
           this.spinner.hide();
-          this.router.navigate(['/logout']);
+          // this.router.navigate(['/logout']);
           // this.router.navigate(['/home']);
           console.log(err);
         });
@@ -109,7 +109,7 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.authService.logout();
-    this.router.navigate(['/logout']);
+    // this.router.navigate(['/logout']);
     // this.router.navigate(['/home']);
   }
 }
