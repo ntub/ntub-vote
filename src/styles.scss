@@ -57,6 +57,60 @@ ul {
 
 /* Basic layout end */
 
+/* Header */
+
+header {
+  display: flex;
+  padding-top: 64px;
+  width: 100%;
+  height: 100vh;
+
+  .header-banner {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    margin: 1.5rem;
+    width: 100%;
+    height: calc(100% - 3rem);
+    background-image: linear-gradient(to right, rgba(240, 243, 245, 0.85), rgba(240, 243, 245, 0.9)), url(/assets/images/banner.jpg);
+    background-size: cover;
+    text-align: center;
+  }
+
+  .header-banner.end {
+    background-image: linear-gradient(to right, rgba(240, 243, 245, 0.85), rgba(240, 243, 245, 0.9)), url(/assets/images/banner-end.jpg);
+
+  }
+
+  h2,
+  span {
+    display: block;
+    margin-bottom: 1.5rem;
+    padding: 0 1.5rem;
+
+  }
+
+  &.result {
+    height: 50vh;
+
+    h2 {
+      margin-bottom: 0;
+    }
+  }
+}
+
+/* Header end */
+
+@media only screen and (max-width: 600px) {
+  header .header-banner {
+    margin: 0;
+    height: 100%;
+  }
+}
+
+
+
 /* Section */
 article {
   section {
