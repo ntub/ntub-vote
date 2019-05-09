@@ -3,8 +3,9 @@
   flex-direction: row;
   flex-wrap: wrap;
   margin: 0 1rem 1rem 1rem;
+  margin: auto;
   max-width: 1280px;
-  width: 100%;
+  width: calc(100% - 2rem);
 
   li {
     flex: 1 1;
@@ -21,8 +22,8 @@
       height: 300px;
 
       img {
-        max-height: 320px;
         min-height: 300px;
+        max-height: 320px;
       }
     }
 

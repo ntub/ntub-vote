@@ -1,13 +1,13 @@
-import { Candidate } from './../model/candidate.model';
-import { Component, OnInit } from '@angular/core';
-import { NavbarMod } from '../navbar/enums';
-import { CandidateService } from '../shared-services/candidate.service';
-import { Observable } from 'rxjs';
-import { CandidateResult } from '../model/candidate.model';
-import { groupBy, maxBy } from 'lodash';
-import { mergeMap, toArray, map, finalize } from 'rxjs/operators';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { EChartOption } from 'echarts';
+import { Component, OnInit } from '@angular/core'
+import { EChartOption } from 'echarts'
+import { groupBy, maxBy } from 'lodash'
+import { NgxSpinnerService } from 'ngx-spinner'
+import { finalize, map } from 'rxjs/operators'
+
+import { FooterMod } from '../footer/enums'
+import { CandidateResult } from '../model/candidate.model'
+import { NavbarMod } from '../navbar/enums'
+import { CandidateService } from '../shared-services/candidate.service'
 
 @Component({
   selector: 'app-result',
@@ -20,11 +20,13 @@ export class ResultComponent implements OnInit {
   persidentChartOption: EChartOption;
   // councilorElected: CandidateResult;
   councilorChartOption: EChartOption;
+
+  footerMod = FooterMod.Home;
   councilors: CandidateResult[];
   constructor(
     private candidateService: CandidateService,
     private spinner: NgxSpinnerService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.spinner.show();

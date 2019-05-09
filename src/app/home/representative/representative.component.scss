@@ -3,7 +3,8 @@
   flex-wrap: wrap;
   justify-content: center;
   margin: 0 1rem;
-  width: 100%;
+  margin: auto;
+  width: calc(100% - 2rem);
 
   li {
     display: inline-flex;
