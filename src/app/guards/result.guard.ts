@@ -18,7 +18,7 @@ export class ResultGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Promise<boolean> {
-    if (await this.timeService.isEnd()) {
+    if (!await this.timeService.isEnd()) {
       console.log('Result Guard');
       this.router.navigate(['/home']);
     }
