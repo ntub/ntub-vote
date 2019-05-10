@@ -1,5 +1,4 @@
 article {
-  margin-bottom: 1rem;
 
   section:nth-child(2n) {
     background-color: #F0F3F5;
@@ -71,7 +70,7 @@ article {
     flex: 1 1;
     margin-bottom: 1.4rem;
     padding: 0 1rem;
-    min-width: 280px;
+    min-width: 240px;
     max-width: 50%;
     text-align: center;
 
@@ -103,5 +102,39 @@ article {
 @media only screen and (max-width: 720px) {
   .member-result-list li {
     max-width: 100%;
+  }
+}
+
+#representative {
+  >div {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 0;
+
+    h3 {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      margin: auto;
+      padding: 1rem 2rem;
+      background-color: #3b4043;
+      color: #FFFFFF;
+      max-width: 80%;
+
+      &::before {
+        position: absolute;
+        bottom: -18px;
+        width: 0;
+        height: 0;
+        border-width: 20px 15px 0 15px;
+        border-style: solid;
+        border-color: #3b4043 transparent transparent transparent;
+        content: ' ';
+      }
+    }
+
+    &:nth-child(2n+1) {
+      background-color: #F0F3F5;
+    }
   }
 }
