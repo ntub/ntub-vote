@@ -1,15 +1,15 @@
-import { LoginComponent } from './login/login.component';
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule, ExtraOptions } from '@angular/router';
+import { NgModule } from '@angular/core'
+import { RouterModule, Routes } from '@angular/router'
 
-import { HomeComponent } from './home/home.component';
-import { MemberComponent } from './member/member.component';
-import { VoteListComponent } from './vote-list/vote-list.component';
-import { VoteCompleteComponent } from './vote-complete/vote-complete.component';
-import { LoginGuard } from './guards/login.guard';
-import { ResultComponent } from './result/result.component';
-import { ResultGuard } from './guards/result.guard';
-import { LogoutComponent } from './logout/logout.component';
+import { LoginGuard } from './guards/login.guard'
+import { ResultGuard } from './guards/result.guard'
+import { HomeComponent } from './home/home.component'
+import { LoginComponent } from './login/login.component'
+import { LogoutComponent } from './logout/logout.component'
+import { MemberComponent } from './member/member.component'
+import { ResultComponent } from './result/result.component'
+import { VoteCompleteComponent } from './vote-complete/vote-complete.component'
+import { VoteListComponent } from './vote-list/vote-list.component'
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -27,7 +27,6 @@ const routes: Routes = [
     canActivate: [LoginGuard]
   },
   { path: 'result', component: ResultComponent, canActivate: [ResultGuard] },
-  { path: 'result1', component: ResultComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 
@@ -35,4 +34,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
