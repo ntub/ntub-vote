@@ -26,7 +26,7 @@ steps:
       target: /var/app/ntub-vote
       rm: true
       source:
-        - /*
+        - /
     when:
       branch: master
 
