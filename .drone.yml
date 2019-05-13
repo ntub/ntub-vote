@@ -10,7 +10,7 @@ steps:
       - npx ng build --prod
       - ls -al
     when:
-      branch: deploy
+      branch: master
 
   - name: scp
     image: appleboy/drone-scp
@@ -53,7 +53,7 @@ steps:
         # - docker stop drone-angular
         # - docker run --name drone-angular -p 80:80 -d --rm my-angular-app
     when:
-      branch: deploy
+      branch: master
 
   - name: slack
     image: plugins/slack
