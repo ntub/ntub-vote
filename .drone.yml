@@ -31,7 +31,7 @@ steps:
       branch: master
 
   - name: run_server
-    image: appleboy/drone-ssh:1.4.0
+    image: appleboy/drone-ssh:1.5.0
     settings:
       host:
         from_secret: server_host
