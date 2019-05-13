@@ -1,0 +1,65 @@
+kind: pipeline
+name: default
+
+steps:
+  - name: build
+    image: node:11-alpine
+    commands:
+      - node -v
+      - npm i
+      - npx ng build --prod
+      - ls -al
+    when:
+      branch: deploy
+
+  - name: scp
+    image: appleboy/drone-scp
+    secrets: [ server_password ]
+    settings:
+      host:
+        from_secret: server_host
+      port: 22
+      username:
+        from_secret: server_user
+      password:
+        from_secret: server_password
+      target: /var/app/ntub-vote
+      rm: true
+      source:
+        - dist
+        - Dockerfile
+        - docker-compose.yml
+        - nginx.conf
+    when:
+      branch: deploy
+
+  - name: run_server
+    image: appleboy/drone-ssh:1.5.0
+    settings:
+      host:
+        from_secret: server_host
+      username:
+        from_secret: server_user
+      password:
+        from_secret: server_password
+      port: 22
+      command_timeout: 3m
+      script:
+        - pwd
+        - cd /var/app/ntub-vote
+        - docker-compose down
+        - docker-compose up --build -d
+        # - docker image build -t my-angular-app .
+        # - docker stop drone-angular
+        # - docker run --name drone-angular -p 80:80 -d --rm my-angular-app
+    when:
+      branch: deploy
+
+  - name: slack
+    image: plugins/slack
+    settings:
+      webhook:
+        from_secret: bitbucket_webhook
+      channel: drone
+    when:
+      status: [ success, failure ]
