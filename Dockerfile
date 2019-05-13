@@ -12,4 +12,4 @@ FROM nginx:alpine
 
 WORKDIR /var/www/ntub-vote
 
-COPY --from=0 /app/src/dist/* ./
+COPY --from=0 /app/src/dist .
