@@ -2,15 +2,15 @@ kind: pipeline
 name: default
 
 steps:
-  - name: build
-    image: node:11-alpine
-    commands:
-      - node -v
-      - npm i
-      - npx ng build --prod
-      - ls -al
-    when:
-      branch: master
+  # - name: build
+  #   image: node:11-alpine
+  #   commands:
+  #     - node -v
+  #     - npm i
+  #     - npx ng build --prod
+  #     - ls -al
+  #   when:
+  #     branch: master
 
   - name: scp
     image: appleboy/drone-scp
@@ -26,12 +26,9 @@ steps:
       target: /var/app/ntub-vote
       rm: true
       source:
-        - dist
-        - Dockerfile
-        - docker-compose.yml
-        - nginx.conf
+        - *
     when:
-      branch: deploy
+      branch: master
 
   - name: run_server
     image: appleboy/drone-ssh:1.5.0
