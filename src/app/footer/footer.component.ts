@@ -16,7 +16,7 @@ import { finalize } from 'rxjs/operators';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
-  @ViewChild('checkSwal') private checkSwal: SwalComponent;
+  @ViewChild('checkSwal', { static: false }) private checkSwal: SwalComponent;
   @Input() footerMod: FooterMod = FooterMod.None;
   @Input() submitVote?: SendVote = null;
   candidate: Candidate;
@@ -31,9 +31,9 @@ export class FooterComponent implements OnInit {
     private votePoolService: VotePoolService,
     private router: Router,
     private spinner: NgxSpinnerService
-  ) {}
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   scrollTop() {
     window.scroll(0, 0);
@@ -41,7 +41,7 @@ export class FooterComponent implements OnInit {
 
   onBeforeOpen(event) {
     console.log('before');
-    for (let i = 0; i < 999; i++) {}
+    for (let i = 0; i < 999; i++) { }
   }
 
   submit() {

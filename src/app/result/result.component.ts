@@ -27,7 +27,7 @@ export class ResultComponent implements OnInit {
   constructor(
     private candidateService: CandidateService,
     private spinner: NgxSpinnerService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.spinner.show();
@@ -40,10 +40,16 @@ export class ResultComponent implements OnInit {
         finalize(() => this.spinner.hide())
       )
       .subscribe(data => {
-        this.setPresidentChart(data.會長);
-        this.setCouncilorChart(data.議員);
-        this.setRepresentativeCharts(data.代表);
-        this.councilors = data.議員;
+        if (data.會長) {
+          this.setPresidentChart(data.會長);
+        }
+        if (data.議員) {
+          this.setCouncilorChart(data.議員);
+          this.councilors = data.議員;
+        }
+        if (data.代表) {
+          this.setRepresentativeCharts(data.代表);
+        }
       });
   }
 

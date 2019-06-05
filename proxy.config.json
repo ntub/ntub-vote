@@ -1,6 +1,6 @@
 {
     "/api": {
-        "target": "https://ntub-vote-server.arthurc.me",
+        "target": "https://vote-server.ntub.edu.tw",
         "secure": true,
         "changeOrigin": true
     }
