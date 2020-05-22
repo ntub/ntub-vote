@@ -1,38 +1,6 @@
-<section id="president" >
+<section id="president" *ngIf="presidents?.length > 0">
   <h4>會長候選人</h4>
   <ul class="president-list">
-    <!-- <li>
-      <div class="avatar">
-        <img src="assets/images/avatar-1.png" alt="" srcset="">
-      </div>
-      <div class="content">
-        <h5>柯O哲</h5>
-        <h6>垃圾不分系</h6>
-        <span>
-          持續推動共享交通——從 YouBike 到共享汽機車<br>
-          建立以「低衝擊開發」（Low Impact Development，簡稱 LID）為基礎的雨水管理系統<br>
-          提升台北的能源自給率<br>
-          擬定「城市循環鏈」戰略方向<br>
-          推動本市公民團體建置綠能公民電廠、辦理民間設置補助獎勵<br>
-        </span>
-      </div>
-    </li>
-    <li>
-      <div class="avatar">
-        <img src="assets/images/avatar-1.png" alt="" srcset="">
-      </div>
-      <div class="content">
-        <h5>柯O哲</h5>
-        <h6>垃圾不分系</h6>
-        <span>
-          持續推動共享交通——從 YouBike 到共享汽機車<br>
-          建立以「低衝擊開發」（Low Impact Development，簡稱 LID）為基礎的雨水管理系統<br>
-          提升台北的能源自給率<br>
-          擬定「城市循環鏈」戰略方向<br>
-          推動本市公民團體建置綠能公民電廠、辦理民間設置補助獎勵<br>
-        </span>
-      </div>
-    </li> -->
     <li *ngFor="let president of presidents">
       <ng-container>
 

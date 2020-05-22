@@ -1,44 +1,33 @@
-<swal #checkSwal
-      text="確定要投給 {{submitVote | json}}"
-      [showCancelButton]="true"
-      [focusCancel]="false">
-  <div *swalPartial
-       class="check-vote">
+<swal #checkSwal text="確定要投給 {{submitVote | json}}" [showCancelButton]="true" [focusCancel]="false">
+  <div *swalPartial class="check-vote">
     <span class="title">投票結果確認</span>
-    <img [src]="candidate.image"
-         alt="">
+    <img [src]="candidate.image" alt="">
 
-    <div class="check-text"
-         *ngIf="submitVote.isAgree">
+    <div class="check-text" *ngIf="submitVote.isAgree">
       確定要投給<strong>{{ candidate.name }}</strong>嗎?
     </div>
-    <div class="check-text"
-         *ngIf="!submitVote.isAgree">
+    <div class="check-text" *ngIf="!submitVote.isAgree">
       確定<strong>不同意</strong>嗎?
     </div>
   </div>
 </swal>
 
-<footer [ngClass]="{'fixed-footer': isFixedFooter}"
-        [ngSwitch]="footerMod">
+<footer [ngClass]="{'fixed-footer': isFixedFooter}" [ngSwitch]="footerMod">
   <ng-container *ngSwitchCase="footerModType.Home">
-    <span>Copyright © 2018 國立臺北商業大學學生會投票系統. All rights reserved</span>
-    <a class="action"
-       (click)="scrollTop()">
+    <span>Copyright © 2018 國立臺北商業大學投票系統. All rights reserved</span>
+    <a class="action" (click)="scrollTop()">
       <i class="material-icons">
         arrow_upward
       </i>
     </a>
   </ng-container>
   <ng-container *ngSwitchCase="footerModType.Submit">
-    <a class="action"
-       (click)="submit()">
+    <a class="action" (click)="submit()">
       確認投票
     </a>
   </ng-container>
   <ng-container *ngSwitchDefault>
-    <a class="action"
-       [routerLink]="['/vote-complete']">
+    <a class="action" [routerLink]="['/vote-complete']">
       完成投票
     </a>
   </ng-container>
