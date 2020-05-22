@@ -28,7 +28,8 @@ steps:
       source:
         - ./*
     when:
-      branch: master
+      branch:
+        - master
 
   - name: run_server
     image: appleboy/drone-ssh
@@ -50,7 +51,8 @@ steps:
         # - docker stop drone-angular
         # - docker run --name drone-angular -p 80:80 -d --rm my-angular-app
     when:
-      branch: master
+      branch:
+        - master
 
   - name: slack
     image: plugins/slack
